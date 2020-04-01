@@ -22,7 +22,13 @@ public class Filme {
         this.ano = ano;
     }
 
-
+    public Filme(String nome, String genero, int ano, String descricao, int idImagem) {
+        this.nome = nome;
+        this.genero = genero;
+        this.descricao = descricao;
+        this.ano = ano;
+        this.idImagem = idImagem;
+    }
 
     public String getNome() {
         return nome;

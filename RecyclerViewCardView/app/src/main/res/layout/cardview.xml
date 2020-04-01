@@ -1,49 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:id="@+id/cv"
-    >
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:elevation="6dp"
+    tools:layout_editor_absoluteX="6dp"
+    tools:layout_editor_absoluteY="6dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="169dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="118dp">
 
         <ImageView
-            android:id="@+id/idImageFilme"
-            android:layout_width="222dp"
+            android:id="@+id/imageViewFilme"
+            android:layout_width="372dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/coringajpg" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="268dp"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/idTituloFilme"
+                android:id="@+id/textViewtitulo"
                 android:layout_width="match_parent"
-                android:layout_height="39dp" />
+                android:layout_height="wrap_content"
+                android:text="@string/titulo"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/idAnoFilme"
+                android:id="@+id/textViewGenero"
                 android:layout_width="match_parent"
-                android:layout_height="39dp" />
+                android:layout_height="wrap_content"
+                android:text="@string/genero" />
 
             <TextView
-                android:id="@+id/idGeneroFilme"
+                android:id="@+id/textViewAno"
                 android:layout_width="match_parent"
-                android:layout_height="39dp" />
+                android:layout_height="wrap_content"
+                android:text="@string/ano" />
 
             <TextView
-                android:id="@+id/idDescricaoFilme"
+                android:id="@+id/textViewDescricao"
                 android:layout_width="match_parent"
-                android:layout_height="53dp" />
-
+                android:layout_height="204dp"
+                android:text="@string/descricao" />
         </LinearLayout>
 
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>
