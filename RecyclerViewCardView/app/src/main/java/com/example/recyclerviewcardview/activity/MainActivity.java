@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.recyclerviewcardview.adapter.Adapter;
 import com.example.recyclerviewcardview.adapter.model.Filme;
 import com.example.recyclerviewcardview.R;
+import com.example.recyclerviewcardview.controller.ControllerFIlme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +27,12 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<Filme> listaFilme;
+    private ControllerFIlme controllerFIlme = ControllerFIlme.getInstance();
+
 
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
 
         super.onCreate(savedInstanceState);
@@ -39,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
 
-        Adapter adapter = new Adapter(listaFilme);
+        Adapter adapter = new Adapter(controllerFIlme.getListaFilme(), this);
 
-      //  LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-       // layoutManager.setOrientation(LinearLayout.ver);
+        //  LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        // layoutManager.setOrientation(LinearLayout.ver);
 
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
@@ -51,38 +54,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayout.VERTICAL));
         recyclerView.setAdapter(adapter);
 
-/*
-        recyclerView.addOnItemTouchListener(
-                new ClickListener(
-                        getApplicationContext(),
-                        recyclerView,
-                        new ClickListener.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(View view, int position) {
-                                Toast.makeText(getApplicationContext(), "Item pressionado"+listaFilme.get(position).getNome(), Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onLongItemClick(View view, int position) {
-                                Toast.makeText(getApplicationContext(), "Click Longo"+listaFilme.get(position).getNome(), Toast.LENGTH_SHORT).show();
-                            }
-
-                            @Override
-                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                            }
-                        }
-
-                )
-
-        );
-
- */
     }
 
-    public void criarFilmes(){
-        listaFilme = new ArrayList<>();
-        listaFilme.add(new Filme("Coringa", "Drama", 2019, "Filme do coringa", R.drawable.coringajpg));
-        listaFilme.add(new Filme("Band of Brothers", "Minissérie",2001, "Historia da compania Easy" , R.drawable.bandofbrothers));
+    public void criarFilmes() {
+
+        controllerFIlme.addFilme(new Filme("Coringa", "Drama", 2019, "Filme do coringa", R.drawable.coringajpg));
+        controllerFIlme.addFilme(new Filme("Band of Brothers", "Minissérie", 2001, "A história da Easy Company, integrante da 101a. Divisão do Exército dos Estados Unidos, na Segunda Guerra Mundial.", R.drawable.bandofbrothers));
+        controllerFIlme.addFilme(new Filme("Coração Valente", "Guerra", 1995, "A história de um herói escocês do século 13, chamado William Wallace, que lidera seus conterrâneos contra o monarca inglês Edward I", R.drawable.coracaovalente));
+        controllerFIlme.addFilme(new Filme("O resgate do soldado Ryan", "Guerra", 1998, "Ao desembarcar na Normandia, no dia 6 de junho de 1944, o Capitão Miller recebe a missão de comandar um grupo do Segundo Batalhão para o resgate do soldado James Ryan", R.drawable.oresgatedosoldadoryan));
+
     }
 }

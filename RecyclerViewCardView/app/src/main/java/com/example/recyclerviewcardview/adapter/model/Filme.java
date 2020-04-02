@@ -10,10 +10,10 @@ public class Filme {
     private String descricao;
     private int ano;
     private int idImagem;
-    private List<Filme> listFilme;
+    private boolean selected;
 
 
-    public Filme(){
+    public Filme() {
     }
 
     public Filme(String nome, String genero, int ano) {
@@ -70,4 +70,11 @@ public class Filme {
         this.idImagem = idImagem;
     }
 
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 }

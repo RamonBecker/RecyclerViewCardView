@@ -32,9 +32,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="layoutResourceFile_vertical" />
         <option value="layoutResourceFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -47,16 +47,16 @@
     <property name="android.recentlyUsedThemes" value="android:Theme.Material" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../ProgramacaoAndroid/recyclerview-with-cardview-example-master" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Cliente\Documents\GitHub\RecyclerViewCardView\RecyclerViewCardView\app\src\main\res\drawable-v24" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Cliente\Documents\GitHub\RecyclerViewCardView\RecyclerViewCardView\app\src\main\res\drawable" />
       <recent name="C:\Users\Cliente\Documents\GitHub\RecyclerViewCardView\RecyclerViewCardView\app\src\main\res\layout" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Cliente\Documents\GitHub\RecyclerViewCardView\RecyclerViewCardView\app\src\main\res\drawable-v24" />
     </key>
   </component>
   <component name="RunDashboard">
