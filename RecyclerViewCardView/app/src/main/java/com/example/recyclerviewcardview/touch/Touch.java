@@ -24,6 +24,6 @@ public class Touch extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
+        adapter.remover(viewHolder.getAdapterPosition());
     }
 }

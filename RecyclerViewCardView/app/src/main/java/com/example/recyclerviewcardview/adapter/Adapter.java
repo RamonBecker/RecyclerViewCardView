@@ -2,34 +2,27 @@ package com.example.recyclerviewcardview.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
+import android.media.audiofx.NoiseSuppressor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.recyclerviewcardview.R;
 import com.example.recyclerviewcardview.activity.EditarFilme;
-import com.example.recyclerviewcardview.activity.MainActivity;
 import com.example.recyclerviewcardview.adapter.model.Filme;
 import com.example.recyclerviewcardview.controller.ControllerFIlme;
-
-import java.util.Collection;
+import com.google.android.material.snackbar.Snackbar;
 import java.util.Collections;
-import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
-  //  private List<Filme> listaFilme;
+    //  private List<Filme> listaFilme;
     private ControllerFIlme controllerFIlme;
     AppCompatActivity activity;
-   private LayoutInflater layoutInflater;
+    private LayoutInflater layoutInflater;
 
     public Adapter(Context context, AppCompatActivity activity) {
         this.layoutInflater = LayoutInflater.from(context);
@@ -46,20 +39,53 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     }
 
-    public void mover(int fromPosition, int toPosition){
-
-        if(fromPosition < toPosition){
-            for (int i = fromPosition; i < toPosition; i++){
-               Collections.swap(controllerFIlme.getListaFilme(), i, i+1);
+    public void mover(int fromPosition, int toPosition) {
+        if (fromPosition < toPosition) {
+            for (int i = fromPosition; i < toPosition; i++) {
+                Collections.swap(controllerFIlme.getListaFilme(), i, i + 1);
             }
-        }else{
-            for (int i = fromPosition; i > toPosition; i--){
+        } else {
+            for (int i = fromPosition; i > toPosition; i--) {
                 Collections.swap(controllerFIlme.getListaFilme(), i, i - 1);
             }
 
             notifyItemMoved(fromPosition, toPosition);
         }
 
+    }
+
+    public void editar(Filme filme, int position){
+        controllerFIlme.getListaFilme().get(position).setNome(filme.getNome());
+        controllerFIlme.getListaFilme().get(position).setAno(filme.getAno());
+        controllerFIlme.getListaFilme().get(position).setGenero(filme.getGenero());
+        controllerFIlme.getListaFilme().get(position).setDescricao(filme.getDescricao());
+        notifyItemChanged(position);
+    }
+
+    public void adicionarFilme(Filme filme){
+        controllerFIlme.getListaFilme().add(filme);
+        notifyItemInserted(getItemCount());
+    }
+
+
+
+    public void remover(int position) {
+        final int posicaoRemovida = position;
+        final Filme filmeRemovido = controllerFIlme.getListaFilme().get(position);
+        controllerFIlme.getListaFilme().remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, this.getItemCount());
+
+        Snackbar snackbar = Snackbar.make(activity.findViewById(R.id.constraintLayout), "Item deletado", Snackbar.LENGTH_LONG);
+        snackbar.setAction("Desfazer ?", new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                controllerFIlme.getListaFilme().add(posicaoRemovida, filmeRemovido);
+                notifyItemInserted(posicaoRemovida);
+            }
+        });
+        snackbar.show();
     }
 
     @Override
@@ -71,7 +97,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
         holder.anoFilme.setText(String.valueOf(filme.getAno()));
         holder.descricaoFilme.setText(filme.getDescricao());
         holder.imgFilme.setImageResource(filme.getIdImagem());
-        holder.posicaoFilme.setText(String.valueOf(position));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), EditarFilme.class);
+                v.getContext().startActivity(i);
+                EditarFilme.tela = "Editar";
+                EditarFilme.posicao = holder.getAdapterPosition();
+            }
+        });
     }
 
     @Override
@@ -90,34 +126,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
 
         public MyViewHolder(@NonNull View itemView) {
-
-
             super(itemView);
             tituloFilme = (TextView) itemView.findViewById(R.id.textViewtitulo);
             generoFilme = (TextView) itemView.findViewById(R.id.textViewGenero);
             descricaoFilme = (TextView) itemView.findViewById(R.id.textViewDescricao);
             anoFilme = (TextView) itemView.findViewById(R.id.textViewAno);
             imgFilme = (ImageView) itemView.findViewById(R.id.imageViewFilme);
-            posicaoFilme = (TextView) itemView.findViewById(R.id.textViewPosicao);
-
-            itemView.setOnClickListener( new View.OnClickListener(){
-
-                @Override
-                public void onClick(View v) {
-
-                    EditarFilme.posicao = Integer.valueOf((String) posicaoFilme.getText());
-                    EditarFilme.tela = "Editar";
-                    Intent i = new Intent(v.getContext(), EditarFilme.class);
-                    v.getContext().startActivity(i);
-                    activity.finish();
-                    Log.i("poiscao", "posicao do FIlme:"+posicaoFilme.getText());
-
-                }
-            });
         }
     }
-
-
 }
 
 

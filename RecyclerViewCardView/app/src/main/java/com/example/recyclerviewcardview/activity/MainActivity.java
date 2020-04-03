@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
         //  LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         // layoutManager.setOrientation(LinearLayout.ver);
 
+
+
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 1);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         ItemTouchHelper touchHelper = new ItemTouchHelper(new Touch(adapter));
         touchHelper.attachToRecyclerView(recyclerView);
+        EditarFilme.adapter = adapter;
     }
 
 
