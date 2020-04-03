@@ -19,18 +19,22 @@ import com.example.recyclerviewcardview.R;
 import com.example.recyclerviewcardview.activity.EditarFilme;
 import com.example.recyclerviewcardview.activity.MainActivity;
 import com.example.recyclerviewcardview.adapter.model.Filme;
+import com.example.recyclerviewcardview.controller.ControllerFIlme;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
-    private List<Filme> listaFilme;
+  //  private List<Filme> listaFilme;
+    private ControllerFIlme controllerFIlme;
     AppCompatActivity activity;
    private LayoutInflater layoutInflater;
 
-    public Adapter(List<Filme> lista, Context context, AppCompatActivity activity) {
+    public Adapter(Context context, AppCompatActivity activity) {
         this.layoutInflater = LayoutInflater.from(context);
-        this.listaFilme = lista;
         this.activity = activity;
+        this.controllerFIlme = ControllerFIlme.getInstance();
     }
 
 
@@ -42,9 +46,25 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     }
 
+    public void mover(int fromPosition, int toPosition){
+
+        if(fromPosition < toPosition){
+            for (int i = fromPosition; i < toPosition; i++){
+               Collections.swap(controllerFIlme.getListaFilme(), i, i+1);
+            }
+        }else{
+            for (int i = fromPosition; i > toPosition; i--){
+                Collections.swap(controllerFIlme.getListaFilme(), i, i - 1);
+            }
+
+            notifyItemMoved(fromPosition, toPosition);
+        }
+
+    }
+
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
-        Filme filme = listaFilme.get(position);
+        Filme filme = controllerFIlme.getListaFilme().get(position);
 
         holder.tituloFilme.setText(filme.getNome());
         holder.generoFilme.setText(filme.getGenero());
@@ -56,7 +76,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
 
     @Override
     public int getItemCount() {
-        return listaFilme.size();
+        return controllerFIlme.getListaFilme().size();
     }
 
 
