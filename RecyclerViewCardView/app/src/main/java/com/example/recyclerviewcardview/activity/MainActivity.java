@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
@@ -38,11 +40,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview);
 
-        criarFilmes();
-
         recyclerView = findViewById(R.id.recyclerView);
 
-        Adapter adapter = new Adapter(controllerFIlme.getListaFilme(), this);
+        Adapter adapter = new Adapter(controllerFIlme.getListaFilme(), this, this);
 
         //  LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         // layoutManager.setOrientation(LinearLayout.ver);
@@ -56,12 +56,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void criarFilmes() {
 
-        controllerFIlme.addFilme(new Filme("Coringa", "Drama", 2019, "Filme do coringa", R.drawable.coringajpg));
-        controllerFIlme.addFilme(new Filme("Band of Brothers", "Minissérie", 2001, "A história da Easy Company, integrante da 101a. Divisão do Exército dos Estados Unidos, na Segunda Guerra Mundial.", R.drawable.bandofbrothers));
-        controllerFIlme.addFilme(new Filme("Coração Valente", "Guerra", 1995, "A história de um herói escocês do século 13, chamado William Wallace, que lidera seus conterrâneos contra o monarca inglês Edward I", R.drawable.coracaovalente));
-        controllerFIlme.addFilme(new Filme("O resgate do soldado Ryan", "Guerra", 1998, "Ao desembarcar na Normandia, no dia 6 de junho de 1944, o Capitão Miller recebe a missão de comandar um grupo do Segundo Batalhão para o resgate do soldado James Ryan", R.drawable.oresgatedosoldadoryan));
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.inserirMenu) {
+
+            EditarFilme.tela = "Adicionar";
+            Intent intent = new Intent(this, EditarFilme.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }

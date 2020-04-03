@@ -35,6 +35,7 @@
         <option value="layoutResourceFile_vertical" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -47,11 +48,12 @@
     <property name="android.recentlyUsedThemes" value="android:Theme.Material" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../ProgramacaoAndroid/recyclerview-with-cardview-example-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../BlackJack/app" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Cliente\Documents\GitHub\RecyclerViewCardView\RecyclerViewCardView\app\src\main\res\menu" />
       <recent name="C:\Users\Cliente\Documents\GitHub\RecyclerViewCardView\RecyclerViewCardView\app\src\main\res\drawable" />
       <recent name="C:\Users\Cliente\Documents\GitHub\RecyclerViewCardView\RecyclerViewCardView\app\src\main\res\layout" />
     </key>

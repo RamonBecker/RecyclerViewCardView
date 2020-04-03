@@ -24,12 +24,13 @@ import java.util.List;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
     private List<Filme> listaFilme;
-   // AppCompatActivity activity;
+    AppCompatActivity activity;
    private LayoutInflater layoutInflater;
 
-    public Adapter(List<Filme> lista, Context context) {
+    public Adapter(List<Filme> lista, Context context, AppCompatActivity activity) {
         this.layoutInflater = LayoutInflater.from(context);
         this.listaFilme = lista;
+        this.activity = activity;
     }
 
 
@@ -85,10 +86,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.MyViewHolder> {
                 public void onClick(View v) {
 
                     EditarFilme.posicao = Integer.valueOf((String) posicaoFilme.getText());
+                    EditarFilme.tela = "Editar";
                     Intent i = new Intent(v.getContext(), EditarFilme.class);
                     v.getContext().startActivity(i);
-
+                    activity.finish();
                     Log.i("poiscao", "posicao do FIlme:"+posicaoFilme.getText());
+
                 }
             });
         }
